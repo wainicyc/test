@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学科模块选择平台</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #3498db, #ffffff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .module-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .module-container h1 {
+            color: #3498db;
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .module-container #student-name-display {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .module-box {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(52, 152, 219, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .module-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .module-box:hover::before {
+            opacity: 1;
+        }
+
+        .module-box.selected {
+            border: 3px solid #3498db;
+            transform: scale(1.05);
+        }
+
+        .module-box p {
+            color: #333;
+            font-size: 22px;
+            font-weight: 600;
+            margin: 0;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .button-container button {
+            padding: 15px 30px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-container button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="module-container">
+        <h1>请选择测试科目</h1>
+        <p id="student-name-display">当前登录学生：<span id="student-name"></span></p>
+        <div class="module-grid">
+            <div class="module-box" data-link="https://kaoshi.wjx.top/vm/tUIFcG8.aspx" onclick="selectModule(this)">
+                <p>语文</p>
+            </div>
+            <div class="module-box" data-link="https://www.wjx.cn/vm/h7B6lF0.aspx" onclick="selectModule(this)">
+                <p>心理健康</p>
+            </div>
+            <div class="module-box" data-link="https://kaoshi.wjx.top/vm/t2WFFcM.aspx" onclick="selectModule(this)">
+                <p>数学</p>
+            </div>
+            <div class="module-box" data-link="https://kaoshi.wjx.top/vm/wWC3McD.aspx" onclick="selectModule(this)">
+                <p>科学</p>
+            </div>
+            <div class="module-box" data-link="https://www.wjx.cn/vm/YaBDMrv.aspx" onclick="selectModule(this)">
+                <p>德育</p>
+            </div>
+            <div class="module-box" data-link="https://www.wjx.cn/vm/eRjSfAn.aspx" onclick="selectModule(this)">
+                <p>劳动</p>
+            </div>
+            <div class="module-box" data-link="https://www.wjx.cn/vm/ryK4KaY.aspx" onclick="selectModule(this)">
+                <p>艺术</p>
+            </div>
+            <div class="module-box" data-link="https://kaoshi.wjx.top/vm/PTYzoX4.aspx" onclick="selectModule(this)">
+                <p>英语</p>
+            </div>
+        </div>
+        <div class="button-container">
+            <button onclick="goToSelectedModule()">进入</button>
+        </div>
+    </div>
+    <script>
+        // 检查登录状态
+        const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+        if (!isLoggedIn) {
+            window.location.href = 'index.html';
+        }
+
+        // 读取并显示学生姓名
+        const studentName = sessionStorage.getItem('studentName');
+        if (studentName) {
+            document.getElementById('student-name').textContent = studentName;
+        }
+
+        let selectedModule = null;
+
+        function selectModule(module) {
+            if (selectedModule) {
+                selectedModule.classList.remove('selected');
+            }
+            module.classList.add('selected');
+            selectedModule = module;
+        }
+
+        function goToSelectedModule() {
+            if (selectedModule) {
+                const link = selectedModule.getAttribute('data-link');
+                window.location.href = link;
+            } else {
+                alert('请选择一个模块');
+            }
+        }
+    </script>
+</body>
+
+</html>    

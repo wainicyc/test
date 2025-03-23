@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>林西县第二小学义务教育优质均衡质量监测模拟测试平台</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #3498db, #ffffff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            /* 初始宽度，后续会动态调整 */
+            width: 350px;
+        }
+
+        .login-container h1 {
+            color: #3498db;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .login-container input:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 2px #3498db;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container button:hover {
+            background-color: #2980b9;
+        }
+
+        .info-container {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px; /* 增加内边距 */
+            border-radius: 20px; /* 增加圆角 */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* 增加阴影 */
+            text-align: center;
+            width: 70%;
+            max-width: 600px; /* 限制最大宽度 */
+        }
+
+        .check-info-tip {
+            color: #3498db;
+            font-size: 28px; /* 增大字体大小 */
+            font-weight: bold;
+            margin-bottom: 25px; /* 增加底部边距 */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-box-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .info-box {
+            background: linear-gradient(to bottom, #ffffff, #e0f7fa);
+            padding: 30px; /* 增加内边距 */
+            border-radius: 20px; /* 增加圆角 */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.05);
+            flex: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .info-box:hover {
+            transform: translateY(-8px); /* 增加悬停时的偏移量 */
+        }
+
+        .info-box p {
+            margin: 12px 0; /* 增加上下边距 */
+            color: #333;
+            font-size: 20px; /* 增大字体大小 */
+            font-weight: 500;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px; /* 增加按钮之间的间距 */
+        }
+
+        .button-container button {
+            padding: 15px 30px; /* 增加按钮内边距 */
+            color: white;
+            border: none;
+            border-radius: 10px; /* 增加按钮圆角 */
+            cursor: pointer;
+            font-size: 18px; /* 增大按钮字体大小 */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-container button.go-back {
+            background-color: #73a6ff;
+        }
+
+        .button-container button.go-back:hover {
+            background-color: #5c93ff;
+            transform: scale(1.08); /* 增加悬停时的缩放比例 */
+        }
+
+        .button-container button.go-to-link {
+            background-color: #3498db;
+        }
+
+        .button-container button.go-to-link:hover {
+            background-color: #2980b9;
+            transform: scale(1.08); /* 增加悬停时的缩放比例 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h1>林西县第二小学<br>义务教育优质均衡质量监测模拟测试平台</h1>
+        <input type="text" id="username" placeholder="账户名">
+        <input type="password" id="password" placeholder="密码">
+        <button onclick="checkLogin()">登录</button>
+    </div>
+    <div class="info-container">
+        <p class="check-info-tip">请核对信息</p>
+        <div class="info-box-container">
+            <div class="info-box">
+                <p id="school">学校：</p>
+                <p id="name">姓名：</p>
+                <p id="class">班级：</p>
+                <p id="studentId">学号：</p>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="go-back" onclick="goBack()">重新登陆</button>
+            <button class="go-to-link" onclick="goToLink()">下一步</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // 获取标题元素和登录容器元素
+        const title = document.querySelector('.login-container h1');
+        const loginContainer = document.querySelector('.login-container');
+
+        // 定义一个函数来调整登录容器的宽度
+        function adjustLoginContainerWidth() {
+            // 获取标题的宽度
+            const titleWidth = title.offsetWidth;
+            // 设置登录容器的宽度，添加一些额外的空间
+            loginContainer.style.width = (titleWidth + 60) + 'px';
+        }
+
+        // 初始调用函数
+        adjustLoginContainerWidth();
+
+        // 监听窗口大小变化，重新调整宽度
+        window.addEventListener('resize', adjustLoginContainerWidth);
+    </script>
+</body>
+
+</html>
