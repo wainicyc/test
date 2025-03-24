@@ -22,7 +22,7 @@
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             text-align: center;
-            width: 80%;
+            width: 90%; /* 调整为更灵活的宽度 */
             max-width: 800px;
         }
 
@@ -43,14 +43,14 @@
 
         .module-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 调整列的最小宽度 */
+            gap: 20px; /* 缩小间距 */
             margin-bottom: 40px;
         }
 
         .module-box {
             background-color: #ffffff;
-            padding: 30px;
+            padding: 20px; /* 缩小内边距 */
             border-radius: 20px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
@@ -87,7 +87,7 @@
 
         .module-box p {
             color: #333;
-            font-size: 22px;
+            font-size: 18px; /* 缩小字体大小 */
             font-weight: 600;
             margin: 0;
             text-align: center;
@@ -97,17 +97,17 @@
         .button-container {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 20px; /* 缩小间距 */
         }
 
         .button-container button {
-            padding: 15px 30px;
+            padding: 12px 20px; /* 缩小内边距 */
             background-color: #3498db;
             color: white;
             border: none;
             border-radius: 25px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px; /* 缩小字体大小 */
             font-weight: 500;
             transition: all 0.3s ease;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -116,6 +116,25 @@
         .button-container button:hover {
             background-color: #2980b9;
             transform: scale(1.05);
+        }
+
+        /* 媒体查询，针对小屏幕设备进一步调整 */
+        @media (max-width: 480px) {
+            .module-container {
+                padding: 20px;
+            }
+
+            .module-container h1 {
+                font-size: 28px;
+            }
+
+            .module-container #student-name-display {
+                font-size: 16px;
+            }
+
+            .module-grid {
+                grid-template-columns: repeat(2, 1fr); /* 小屏幕显示两列 */
+            }
         }
     </style>
 </head>
@@ -188,4 +207,4 @@
     </script>
 </body>
 
-</html>    
+</html>

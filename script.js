@@ -1,4 +1,5 @@
 const users = {
+    '111111':{'password':'Aa1234','school':'林西县第二小学','class':'2021级1班','name':'xiwang','studentId':'15042420********40'},
     '251001':{'password':'Ex1234','school':'林西县第二小学','class':'2021级1班','name':'刘品仪','studentId':'15040420********40'},
     '251002':{'password':'Ex1234','school':'林西县第二小学','class':'2021级1班','name':'郑铭博','studentId':'15042420********19'},
     '251003':{'password':'Ex1234','school':'林西县第二小学','class':'2021级1班','name':'马骁尧','studentId':'15042420********13'},
